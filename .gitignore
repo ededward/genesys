@@ -4,10 +4,15 @@ __pycache__/
 
 # Virtual environment
 venv/
+
+# Environment variables
 .env
 
 # Local files
 *.log
+
+# Node.js
+node_modules/
 
 # Old unused version
 genesys_points_slow.py
