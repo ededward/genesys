@@ -37,8 +37,7 @@ def get_genesys_points(url: str) -> dict[str, int]:
 
     card_map = {}
 
-    # Find the table rows (name | points)
-    # The site uses a simple table structure
+    # find the table rows (name | points)
     table = soup.find("table")
     if not table:
         raise Exception("Could not find point table on page")
@@ -72,6 +71,8 @@ if __name__ == "__main__":
         exit(1)
 
     # get cards info
+    cards_file = Path(__file__).parent / "cards.json"
+    
     with open("cards.json", "r", encoding="utf-8") as f:
         cards = json.load(f)
 
@@ -89,7 +90,7 @@ if __name__ == "__main__":
             f'{cards[fixed_name]["id"]} $genesys {points} -- {fixed_name}'
         )
 
-    # ban Link and Pendulum, and some cards that deserved to be banned
+    # ban Link and Pendulum, and some cards for format custumization
     for name, data in cards.items():
         if name in SKIP_LINK_PEND:
             continue

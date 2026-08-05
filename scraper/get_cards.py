@@ -25,18 +25,6 @@ def get_cards(url: str) -> dict[str, dict[int, str, int]]:
         for card in cards_info
     }
 
-    """
-    # easier to read version
-    cards = {}
-    for card in cards_info:
-        fixed_name = normalize_name(card["name"])
-
-        cards[fixed_name] = {
-            "id": card["id"],
-            "type": card["type"]
-        }
-    """
-
     return cards
 
 if __name__ == "__main__":
