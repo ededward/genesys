@@ -70,6 +70,15 @@ if __name__ == "__main__":
         print(f"Failed to fetch Genesys data: {e}")
         exit(1)
 
+    # output Genesys json file
+    output_file = Path(__file__).parent / "genesys.json"
+        
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(genesys_map, f, ensure_ascii=False, indent=2)
+
+    print(f"Saved to {output_file}")
+
+
     # get cards info
     cards_file = Path(__file__).parent / "cards.json"
     
@@ -119,7 +128,7 @@ if __name__ == "__main__":
     for name in missing:
         print(f"Missing: {name}")
 
-    # output file
+    # output config file to MDPro3
     output_file = Path(__file__).parent / "lflist_genesys.conf"
 
     with open(output_file, "w", encoding="utf-8") as f:

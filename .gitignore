@@ -18,5 +18,6 @@ node_modules/
 genesys_points_slow.py
 
 # Untrack outputfile
-scraper/cards.json
+genesys.json
+cards.json
 scraper/lflist_genesys.conf
