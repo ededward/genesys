@@ -1,4 +1,17 @@
+# Python cache
 __pycache__/
-*.pyc
+*.py[cod]
 
+# Virtual environment
+venv/
+.env
+
+# Local files
+*.log
+
+# Old unused version
 genesys_points_slow.py
+
+# Untrack outputfile
+scraper/cards.json
+scraper/lflist_genesys.conf

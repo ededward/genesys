@@ -2,7 +2,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 from pathlib import Path
-from special_name import normalize_name
+from scraper.special_name import normalize_name
 
 CONFIG_HEADER = """#[2026.06 TCG Genesys]
 # Genernated by genesys-gen
@@ -73,7 +73,7 @@ if __name__ == "__main__":
     # get cards info
     cards_file = Path(__file__).parent / "cards.json"
     
-    with open("cards.json", "r", encoding="utf-8") as f:
+    with open(cards_file, "r", encoding="utf-8") as f:
         cards = json.load(f)
 
     points_data = []

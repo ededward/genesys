@@ -2,7 +2,7 @@ import requests
 import json
 import os
 from pathlib import Path
-from special_name import normalize_name
+from scraper.special_name import normalize_name
 
 URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php"
 SPECIAL_NAMES = {
