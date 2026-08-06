@@ -3,12 +3,9 @@ import json
 import os
 from pathlib import Path
 from scraper.special_name import normalize_name
+from scraper.database import insert_cards
 
 URL = "https://db.ygoprodeck.com/api/v7/cardinfo.php"
-SPECIAL_NAMES = {
-    "K9-   Lupis": "K9-ØØ Lupis",
-    "The Three Champions of Swordsoul": "The Three Brave Swordsouls"
-}
 
 def get_cards(url: str) -> dict[str, dict[int, str, int]]:
     response = requests.get(url, timeout=10)
@@ -29,6 +26,9 @@ def get_cards(url: str) -> dict[str, dict[int, str, int]]:
 
 if __name__ == "__main__":
     cards = get_cards(URL)
+
+    insert_cards(cards)
+    print("Inserted cards into database")
 
     """
     # print out output file path

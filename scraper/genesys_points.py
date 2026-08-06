@@ -3,6 +3,7 @@ import json
 from bs4 import BeautifulSoup
 from pathlib import Path
 from scraper.special_name import normalize_name
+from scraper.database import update_genesys_points
 
 CONFIG_HEADER = """#[2026.06 TCG Genesys]
 # Genernated by genesys-gen
@@ -73,6 +74,14 @@ if __name__ == "__main__":
     except requests.RequestException as e:
         print(f"Failed to fetch Genesys data: {e}")
         exit(1)
+
+    normalized_genesys_map = {
+        normalize_name(name): data
+        for name, data in genesys_map.items()
+    }
+
+    updated = update_genesys_points(normalized_genesys_map)
+    print(f"Updated {updated} Genesys cards")
 
     # output Genesys json file
     output_file = Path(__file__).parent / "genesys.json"

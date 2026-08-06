@@ -14,10 +14,13 @@ venv/
 # Node.js
 node_modules/
 
+# Editor Settings
+.vscode/
+
 # Old unused version
 genesys_points_slow.py
 
-# Untrack outputfile
+# Generated files
 genesys.json
 cards.json
 scraper/lflist_genesys.conf
