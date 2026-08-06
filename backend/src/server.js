@@ -98,9 +98,9 @@ app.get("/api/genesys/search", (req, res) => {
         .filter(([name]) =>
             name.toLowerCase().includes(query)
         )
-        .map(([name, points]) => ({
+        .map(([name, data]) => ({
             name,
-            points
+            ...data
         }));
 
     res.json(results);
@@ -122,7 +122,7 @@ app.get("/api/genesys/:name", (req, res) => {
 
     res.json({
         name: matchedName,
-        points: cards[matchedName]
+        ...cards[matchedName]
     });
 })
 

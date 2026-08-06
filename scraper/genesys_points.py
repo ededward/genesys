@@ -58,7 +58,11 @@ def get_genesys_points(url: str) -> dict[str, int]:
         except (IndexError, ValueError):
             continue
 
-        card_map[name] = points
+        card_map.update({
+            name: {
+                "points": points
+            }
+        })
 
     return card_map
 
@@ -89,30 +93,30 @@ if __name__ == "__main__":
     link_and_pend = []
 
     # generate Genesys point list
-    for name, points in genesys_map.items():
+    for name, genesys_data in genesys_map.items():
         # get fixed name if in list, otherwise get original name
         fixed_name = normalize_name(name)
         if fixed_name not in cards or fixed_name in BANNED:
             continue
  
         points_data.append(
-            f'{cards[fixed_name]["id"]} $genesys {points} -- {fixed_name}'
+            f'{cards[fixed_name]["id"]} $genesys {genesys_data["points"]} -- {fixed_name}'
         )
 
     # ban Link and Pendulum, and some cards for format custumization
-    for name, data in cards.items():
+    for name, card_data in cards.items():
         if name in SKIP_LINK_PEND:
             continue
         if (
             name in BANNED
-            or "link" in data["type"].lower()
-            or "pendulum" in data["type"].lower()
+            or "link" in card_data["type"].lower()
+            or "pendulum" in card_data["type"].lower()
         ):
             # add alt art into the list
             x = 0
-            while x < data["images"]:
+            while x < card_data["images"]:
                 link_and_pend.append(
-                    f'{data["id"] + x} 0'
+                    f'{card_data["id"] + x} 0'
                 )
                 x += 1
 
